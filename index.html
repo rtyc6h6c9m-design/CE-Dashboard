@@ -129,7 +129,7 @@
       <div class="card-head">
         <div>
           <h2>Projects by discipline</h2>
-          <p class="note">Primary discipline assigned by the project classifier (out-of-fold accuracy 0.724, macro-F1 0.663). The ten largest are shown; the table view lists all fourteen.</p>
+          <p class="note">Primary discipline assigned by the project classifier (out-of-fold accuracy 73.2%, macro-F1 0.657). The ten largest are shown; the table view lists all fourteen.</p>
         </div>
         <button class="btn sm" data-table="chart-disciplines">Table</button>
       </div>
@@ -220,8 +220,7 @@
     awarded the grant, through the discipline the project was classified into, to the discipline of the
     output it produced. A band that stays level is a project publishing inside its own field; a band that
     crosses is disciplinary movement. Exact field agreement is <b>46.2%</b>; counting movement within a
-    cognate family as agreement gives <b>66.2%</b>, and that 20-point gap is mostly coarse-to-fine
-    relabelling rather than genuine interdisciplinarity.
+    cognate family as agreement gives <b>66.2%</b>.
   </div>
 
   <div class="card">
@@ -313,15 +312,18 @@
     <h2>How the dataset was built</h2>
     <p>
       Projects were collected from UKRI's Gateway to Research API using an eighteen-term search vocabulary,
-      then screened with a three-tier, literature-grounded filter derived principle-first from Kirchherr et al.
-      (2017) and the Ellen MacArthur Foundation glossary. Screening reached precision 0.943, recall 0.909,
-      F1 0.926 and Cohen's κ 0.839 against an independently double-coded sample.
+      then screened with a three-tier, literature-grounded filter derived from Kirchherr et al. (2023) and the
+      Ellen MacArthur Foundation glossary. Screening was validated against 100 hand-coded projects, stratified
+      on the rule's decision: precision 0.94 and negative predictive value 0.89, implying a recall of 0.55 at
+      most. The rule favours precision over coverage, so around half of the genuine CE projects it considered
+      sit outside the corpus.
     </p>
     <p>
       Outputs were matched from four sources — Gateway to Research, OpenAlex, Scopus and Web of Science —
       by grant reference, then deduplicated into one harmonised record per outcome. Institutions were
-      resolved against ROR. Disciplines were assigned by a classifier with out-of-fold accuracy 0.724 and
-      macro-F1 0.663 at a confidence threshold of 0.5029.
+      resolved against ROR. Disciplines were assigned by a classifier with out-of-fold accuracy 73.2% and
+      macro-F1 0.657, the mean across 25 frozen cross-validation splits. Predictions below a confidence of
+      0.503 are kept but flagged.
     </p>
 
     <h2>Limitations you should read before drawing conclusions</h2>
@@ -346,7 +348,7 @@
 
     <h3>Other things to hold in mind</h3>
     <ul>
-      <li><strong>Award values.</strong> 21% of projects have no usable award value, mostly studentships. Funding figures use the 1,294 projects that do.</li>
+      <li><strong>Award values.</strong> 346 projects (21%) have no usable award value, 344 of them studentships funded through block doctoral training grants. Funding figures use the 1,294 projects that do.</li>
       <li><strong>Named investigators.</strong> A principal investigator is recorded for only 385 of 1,640 projects (23.5%), in surname-plus-initial form, which cannot reliably tell two people with the same surname and initial apart. Names are shown on the project record where present; they are deliberately not searchable or networked here.</li>
       <li><strong>Geography.</strong> Lead organisation country resolves for about half of projects, because ROR does not cover small UK companies. Any geographic reading describes the academic and public half of the ecosystem.</li>
       <li><strong>Citations.</strong> Counts shown are OpenAlex only and are missing for many publications. Scopus and Web of Science counts are used in the dissertation but are proprietary and excluded here.</li>
