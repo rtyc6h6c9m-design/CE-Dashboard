@@ -29,14 +29,16 @@ light and dark mode on any device.
 
 Projects were collected from UKRI's Gateway to Research API using an eighteen-term search
 vocabulary, then screened with a three-tier, literature-grounded filter derived from
-Kirchherr et al. (2017) and the Ellen MacArthur Foundation glossary. Screening reached
-precision 0.943, recall 0.909, F1 0.926 and Cohen's κ 0.839 against an independently
-double-coded sample.
+Kirchherr et al. (2023) and the Ellen MacArthur Foundation glossary. Screening was validated
+against 100 hand-coded projects, stratified on the rule's decision: precision 0.94 and negative
+predictive value 0.89, implying a recall of 0.55 at most. The rule favours precision over
+coverage, so around half of the genuine CE projects it considered sit outside the corpus.
 
 Outputs were matched from four sources — Gateway to Research, OpenAlex, Scopus and Web of
 Science — by grant reference, then deduplicated into one harmonised record per outcome.
 Organisations were resolved against ROR. Disciplines were assigned by a classifier with
-out-of-fold accuracy 0.724 and macro-F1 0.663.
+out-of-fold accuracy 73.2% and macro-F1 0.657, the mean across 25 frozen cross-validation
+splits. Predictions below a confidence of 0.503 are kept but flagged.
 
 ## Limitations worth reading first
 
@@ -49,8 +51,8 @@ out-of-fold accuracy 0.724 and macro-F1 0.663.
 - **Reported output is not found output.** Innovate UK reports zero outputs to Gateway to
   Research across 612 projects, yet 845 are findable across the four sources. Every output
   figure here is the all-source merged count.
-- **Award values** are missing for 21% of projects, mostly studentships. Funding figures use
-  the 1,294 projects that have one.
+- **Award values** are missing for 346 projects (21%), 344 of them studentships that GtR funds
+  through block doctoral training grants. Funding figures use the 1,294 projects that have one.
 - **Named investigators** are recorded for only 385 of 1,640 projects (23.5%), in
   surname-plus-initial form, which cannot reliably distinguish individuals. They appear on
   the project record but are deliberately not searchable or networked.
